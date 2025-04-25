@@ -152,8 +152,9 @@ export default function EmiCalculator() {
         }
     ] : [];
 
-    return (
-        <div className="max-w-4xl mx-auto space-y-6">
+return (
+    <div className="max-w-7xl mx-auto space-y-6">
+        <div className="grid md:grid-cols-2 gap-6">
             <Card>
                 <CardHeader>
                     <CardTitle>Loan Calculator</CardTitle>
@@ -170,7 +171,7 @@ export default function EmiCalculator() {
                                 {formatCurrency(loanAmount)}
                             </span>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-[1fr,200px] gap-4 items-center">
+                        <div className="grid grid-cols-[1fr,120px] gap-4 items-center">
                             <Slider
                                 id="loan-amount"
                                 min={100000}
@@ -180,19 +181,16 @@ export default function EmiCalculator() {
                                 onValueChange={(value) => setLoanAmount(value[0])}
                                 className="mt-2"
                             />
-                            <div className="flex space-x-2">
-                                <Input
-                                    type="number"
-                                    value={formInputs.loanAmount}
-                                    onChange={(e) => handleInputChange('loanAmount', e.target.value)}
-                                    placeholder="Enter amount"
-                                    className="w-full"
-                                />
-                            </div>
+                            <Input
+                                type="number"
+                                value={formInputs.loanAmount}
+                                onChange={(e) => handleInputChange('loanAmount', e.target.value)}
+                                placeholder="Amount"
+                                className="w-full"
+                            />
                         </div>
                     </div>
 
-                    {/* Interest Rate Input Group */}
                     <div className="space-y-4">
                         <div className="flex justify-between items-center">
                             <Label htmlFor="interest-rate">Interest Rate (% p.a)</Label>
@@ -200,7 +198,7 @@ export default function EmiCalculator() {
                                 {interestRate}%
                             </span>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-[1fr,200px] gap-4 items-center">
+                        <div className="grid grid-cols-[1fr,120px] gap-4 items-center">
                             <Slider
                                 id="interest-rate"
                                 min={5}
@@ -210,20 +208,17 @@ export default function EmiCalculator() {
                                 onValueChange={(value) => setInterestRate(value[0])}
                                 className="mt-2"
                             />
-                            <div className="flex space-x-2">
-                                <Input
-                                    type="number"
-                                    value={formInputs.interestRate}
-                                    onChange={(e) => handleInputChange('interestRate', e.target.value)}
-                                    placeholder="Enter rate"
-                                    step="0.1"
-                                    className="w-full"
-                                />
-                            </div>
+                            <Input
+                                type="number"
+                                value={formInputs.interestRate}
+                                onChange={(e) => handleInputChange('interestRate', e.target.value)}
+                                placeholder="Rate"
+                                step="0.1"
+                                className="w-full"
+                            />
                         </div>
                     </div>
 
-                    {/* Loan Tenure Input Group */}
                     <div className="space-y-4">
                         <div className="flex justify-between items-center">
                             <Label htmlFor="loan-tenure">Loan Tenure (Years)</Label>
@@ -231,7 +226,7 @@ export default function EmiCalculator() {
                                 {loanTenure} years
                             </span>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-[1fr,200px] gap-4 items-center">
+                        <div className="grid grid-cols-[1fr,120px] gap-4 items-center">
                             <Slider
                                 id="loan-tenure"
                                 min={1}
@@ -240,66 +235,41 @@ export default function EmiCalculator() {
                                 onValueChange={(value) => setLoanTenure(value[0])}
                                 className="mt-2"
                             />
-                            <div className="flex space-x-2">
-                                <Input
-                                    type="number"
-                                    value={formInputs.loanTenure}
-                                    onChange={(e) => handleInputChange('loanTenure', e.target.value)}
-                                    placeholder="Enter years"
-                                    className="w-full"
-                                />
-                            </div>
+                            <Input
+                                type="number"
+                                value={formInputs.loanTenure}
+                                onChange={(e) => handleInputChange('loanTenure', e.target.value)}
+                                placeholder="Years"
+                                className="w-full"
+                            />
                         </div>
                     </div>
 
-                    {/* Calculate Button */}
                     <Button 
                         onClick={applyInputValues}
-                        className="w-full md:w-auto"
+                        className="w-full"
                     >
                         Calculate EMI
                     </Button>
-                </CardContent>
-            </Card>
 
-            {/* Quick Summary Card */}
-            <Card>
-                <CardHeader>
-                    <CardTitle>Quick Summary</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-2 gap-4 pt-4">
                         <div className="p-4 bg-primary/10 rounded-lg">
                             <p className="text-sm text-muted-foreground">Monthly EMI</p>
-                            <p className="text-2xl font-bold text-primary">
+                            <p className="text-xl font-bold text-primary">
                                 {formatCurrency(emiDetails.emi)}
-                            </p>
-                        </div>
-                        <div className="p-4 bg-primary/10 rounded-lg">
-                            <p className="text-sm text-muted-foreground">Principal Amount</p>
-                            <p className="text-2xl font-bold">
-                                {formatCurrency(emiDetails.principalAmount)}
                             </p>
                         </div>
                         <div className="p-4 bg-destructive/10 rounded-lg">
                             <p className="text-sm text-muted-foreground">Total Interest</p>
-                            <p className="text-2xl font-bold text-destructive">
+                            <p className="text-xl font-bold text-destructive">
                                 {formatCurrency(emiDetails.totalInterest)}
-                            </p>
-                        </div>
-                        <div className="p-4 bg-secondary/10 rounded-lg">
-                            <p className="text-sm text-muted-foreground">Total Payment</p>
-                            <p className="text-2xl font-bold text-secondary">
-                                {formatCurrency(emiDetails.totalAmount)}
                             </p>
                         </div>
                     </div>
                 </CardContent>
             </Card>
 
-            {/* Charts Section */}
-            <div className="grid md:grid-cols-2 gap-6">
-                {/* Total Loan Distribution */}
+            <div className="space-y-6">
                 <Card>
                     <CardHeader>
                         <CardTitle className="text-lg">Total Loan Distribution</CardTitle>
@@ -333,7 +303,6 @@ export default function EmiCalculator() {
                     </CardContent>
                 </Card>
 
-                {/* First Year Breakdown */}
                 <Card>
                     <CardHeader>
                         <CardTitle className="text-lg">First Year Breakdown</CardTitle>
@@ -368,42 +337,43 @@ export default function EmiCalculator() {
                     </CardContent>
                 </Card>
             </div>
-
-            {/* Yearly Breakdown Table */}
-            <Card>
-                <CardHeader>
-                    <CardTitle>Year-wise Payment Schedule</CardTitle>
-                    <CardDescription>
-                        Detailed breakdown of payments for each year
-                    </CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <div className="overflow-x-auto">
-                        <Table>
-                            <TableHeader>
-                                <TableRow>
-                                    <TableHead>Year</TableHead>
-                                    <TableHead>Principal Paid</TableHead>
-                                    <TableHead>Interest Paid</TableHead>
-                                    <TableHead>Total Payment</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                {emiDetails.yearlyPayments.map((payment) => (
-                                    <TableRow key={payment.year}>
-                                        <TableCell>{payment.year}</TableCell>
-                                        <TableCell>{formatCurrency(payment.principal)}</TableCell>
-                                        <TableCell>{formatCurrency(payment.interest)}</TableCell>
-                                        <TableCell>
-                                            {formatCurrency(payment.principal + payment.interest)}
-                                        </TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </div>
-                </CardContent>
-            </Card>
         </div>
-    );
+
+        <Card>
+            <CardHeader>
+                <CardTitle>Year-wise Payment Schedule</CardTitle>
+                <CardDescription>
+                    Detailed breakdown of payments for each year
+                </CardDescription>
+            </CardHeader>
+            <CardContent>
+                <div className="overflow-x-auto">
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead>Year</TableHead>
+                                <TableHead>Principal Paid</TableHead>
+                                <TableHead>Interest Paid</TableHead>
+                                <TableHead>Total Payment</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {emiDetails.yearlyPayments.map((payment) => (
+                                <TableRow key={payment.year}>
+                                    <TableCell>{payment.year}</TableCell>
+                                    <TableCell>{formatCurrency(payment.principal)}</TableCell>
+                                    <TableCell>{formatCurrency(payment.interest)}</TableCell>
+                                    <TableCell>
+                                        {formatCurrency(payment.principal + payment.interest)}
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </div>
+            </CardContent>
+        </Card>
+    </div>
+);
+
 }
