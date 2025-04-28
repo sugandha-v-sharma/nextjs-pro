@@ -285,7 +285,7 @@ return (
                                         data={distributionData}
                                         cx="50%"
                                         cy="50%"
-                                        innerRadius={60}
+                                        innerRadius={0} 
                                         outerRadius={80}
                                         paddingAngle={5}
                                         dataKey="value"
@@ -318,7 +318,7 @@ return (
                                         data={firstYearData}
                                         cx="50%"
                                         cy="50%"
-                                        innerRadius={60}
+                                        innerRadius={0} 
                                         outerRadius={80}
                                         paddingAngle={5}
                                         dataKey="value"
